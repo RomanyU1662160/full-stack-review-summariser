@@ -33,7 +33,9 @@ function App() {
         <div
           className={`self-end  align-top ${apiHealth ? 'text-green-500' : 'text-red-500'}`}
         >
-          {apiHealth ? 'API is healthy' : 'API is not healthy'}
+          <span className="animate-pulse">
+            {apiHealth ? 'Healthy' : 'Not healthy'}
+          </span>
         </div>
       </div>
     </>
