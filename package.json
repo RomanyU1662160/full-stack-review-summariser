@@ -13,11 +13,11 @@
     "postinstall": "bunx lefthook install"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
+    "@types/bun": "latest",
     "lefthook": "^2.0.13",
-    "prettier": "^3.7.4"
+    "prettier": "3.7.4"
   },
   "peerDependencies": {
     "typescript": "^5"
