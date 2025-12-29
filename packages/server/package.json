@@ -4,8 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun run src/index.ts",
-    "dev": "bun run --watch src/index.ts"
+    "start": "bun run start:mysql && bun run src/index.ts",
+    "dev": "bun run start:mysql &&  bun run --watch src/index.ts",
+    "start:mysql": "./scripts/start-mysql.sh",
+    "stop:mysql": "docker stop reviews-mysql && docker rm reviews-mysql"
   },
   "devDependencies": {
     "@types/bun": "latest",

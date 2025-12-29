@@ -7,6 +7,12 @@ concurrently([
     cwd: 'packages/server',
     prefixColor: 'blue',
   },
+  // {
+  //   command: 'bun run start:mysql',
+  //   name: 'mysql',
+  //   cwd: 'packages/server',
+  //   prefixColor: 'yellow',
+  // },
   {
     command: 'bun run dev',
     name: 'client',
