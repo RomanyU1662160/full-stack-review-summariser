@@ -1,0 +1,28 @@
+{
+  "name": "reviews-summaries",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "app": "bun index.ts",
+    "format:fix": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
+    "postinstall": "bunx lefthook install"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "lefthook": "^2.0.13",
+    "prettier": "^3.7.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
