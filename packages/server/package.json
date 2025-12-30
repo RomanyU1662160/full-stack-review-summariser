@@ -10,7 +10,8 @@
     "stop:mysql": "docker stop reviews-mysql && docker rm reviews-mysql",
     "view:data": "bunx prisma studio",
     "migrate:dev": "bunx prisma migrate dev",
-    "generate": "bunx prisma generate"
+    "generate": "bunx prisma generate",
+    "seed": "bun run prisma/seed.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
