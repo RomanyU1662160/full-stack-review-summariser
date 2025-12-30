@@ -12,3 +12,54 @@ generator client {
 datasource db {
   provider = "mysql"
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  posts     Review[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String?  @db.Text
+  price       Float
+  reviews     Review[]
+  summary     Summary?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String   @db.Text
+  published Boolean  @default(false)
+  rating    Int      @default(0) @db.TinyInt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+model Summary {
+  id          Int      @id @default(autoincrement())
+  productId   Int      @unique
+  product     Product  @relation(fields: [productId], references: [id])
+  content     String   @db.Text
+  generatedAt DateTime @default(now())
+  expiresAt   DateTime
+
+  @@map("summaries")
+}
