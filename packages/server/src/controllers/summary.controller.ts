@@ -1,7 +1,6 @@
 import type { Request, Response } from 'express'
 import { SummariesService } from '../services/summaries.service'
 import { AiChatService } from '../services/chat.service'
-import { log } from 'winston'
 import { logger } from '../utils'
 
 export const SummaryController = {
