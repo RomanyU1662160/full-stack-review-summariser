@@ -2,7 +2,9 @@ import { z } from 'zod'
 
 export const reviewSummaryResponseSchemaZ = z.object({
   summary: z.string().min(1).max(1000),
-  rating: z.number().min(1).max(5),
+  overall_rating: z.number().min(1).max(5),
+  high_lights: z.array(z.string().min(1).max(500)),
+  total_reviews: z.number().default(0),
 })
 
 export const reviewClassificationSchemaZ = z.object({

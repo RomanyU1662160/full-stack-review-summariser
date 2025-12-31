@@ -2,7 +2,7 @@ import OpenAI from 'openai'
 import {
   reviewClassificationSchemaZ,
   reviewSummaryResponseSchemaZ,
-} from './types'
+} from '../agents/types'
 import { zodTextFormat } from 'openai/helpers/zod'
 import type { Review } from '../../generated/prisma/client'
 // import { ReviewsService } from '../services/reviews.service'

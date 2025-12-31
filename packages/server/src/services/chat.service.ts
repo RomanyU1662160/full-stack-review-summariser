@@ -1,19 +1,7 @@
-import { openAIClient } from '../clients'
-import { ReviewsService } from './reviews.service'
-import type OpenAI from 'openai'
+import { ReviewsAgent } from '../agents/reviews.agents'
 
-export const ChatService = {
-  classifyReviewSentiments: async (
-    productId: number
-  ): Promise<OpenAI.Responses.Response> => {
-    try {
-      const reviews = await ReviewsService.getReviewsByProductId(productId)
-      const classificationResponse =
-        await openAIClient.processReviewsClassification(reviews)
-      return classificationResponse
-    } catch (error) {
-      console.log('error:::>>>', error)
-      throw error
-    }
+export const AiChatService = {
+  summarizeReviews: async (productId: number) => {
+    return await ReviewsAgent.summarizeClassifiedReviews(productId)
   },
 }

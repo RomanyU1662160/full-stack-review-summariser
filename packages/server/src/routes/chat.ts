@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { ChatController } from '../controllers'
+import { AiChatController } from '../controllers'
 
 export const ChatRouter: Router = Router()
 
 ChatRouter.get(
-  '/classify-review-sentiments/:productId',
-  ChatController.classifyReviewSentiments
+  '/reviews-classify/:productId',
+  AiChatController.generateReviewSummary
 )
