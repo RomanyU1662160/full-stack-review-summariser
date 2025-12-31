@@ -1,20 +1,10 @@
 import type { Product, Review } from '../../generated/prisma/client'
 import { prisma } from '../../prisma/prisma'
+import { ReviewsService } from './reviews.service'
 
 export const ProductsService = {
   getProductReviews: async (productId: number): Promise<Review[]> => {
-    const reviews = await prisma.review.findMany({
-      where: { productId },
-      include: {
-        author: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
-      },
-      orderBy: { createdAt: 'desc' },
-    })
+    const reviews = await ReviewsService.getReviewsByProductId(productId)
     return reviews
   },
   getProductById: async (id: number): Promise<Product | null> => {
