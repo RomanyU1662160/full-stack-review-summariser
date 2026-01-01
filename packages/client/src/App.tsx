@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Summary from './components/ui/reviews/Summary'
+import Summary from './components/reviews/Summary'
 
 type FetchHealthResponse = {
   status: string
