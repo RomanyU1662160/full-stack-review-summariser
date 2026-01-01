@@ -3,6 +3,7 @@ import { SummariesService } from '../services/summaries.service'
 import { AiChatService } from '../services/chat.service'
 import { logger } from '../utils'
 import type { Summary } from '../../generated/prisma/client'
+import { ProductsService } from '../services'
 
 export const SummaryController = {
   getReviewSummary: async (
@@ -14,6 +15,11 @@ export const SummaryController = {
 
     if (isNaN(productId)) {
       return res.status(400).json({ error: 'Invalid product ID' })
+    }
+
+    const existingProduct = await ProductsService.getProductById(productId)
+    if (!existingProduct) {
+      return res.status(404).json({ error: 'Product not found' })
     }
 
     const storedSummary =
