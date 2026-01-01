@@ -1,6 +1,5 @@
-import { add } from 'winston'
 import { prisma } from '../../prisma/prisma'
-import { number } from 'zod'
+import dayjs from 'dayjs'
 
 export const SummariesService = {
   addSummaryToProduct: async (
@@ -13,27 +12,26 @@ export const SummariesService = {
       totalReviews: number
     }
   ) => {
+    const now = new Date()
+    const expiresAt = dayjs(now).add(7, 'days')
+
+    const payload = {
+      content: body.summary,
+      overall_rating: body.overall_rating,
+      high_lights: body.high_lights.join(','),
+      totalTokens: body.totalTokens,
+      totalReviews: body.totalReviews,
+      expiresAt: expiresAt.toDate(),
+    }
     // create or update summary for product
     const summary = await prisma.summary.upsert({
       where: {
         productId: productId,
       },
-      update: {
-        content: body.summary,
-        overall_rating: body.overall_rating,
-        high_lights: body.high_lights.join(','),
-        totalTokens: body.totalTokens,
-        totalReviews: body.totalReviews,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Expires in 7 days
-      },
+      update: payload,
       create: {
         productId: productId,
-        content: body.summary,
-        overall_rating: body.overall_rating,
-        high_lights: body.high_lights.join(','),
-        totalTokens: body.totalTokens,
-        totalReviews: body.totalReviews,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Expires in 7 days
+        ...payload,
       },
     })
     return summary

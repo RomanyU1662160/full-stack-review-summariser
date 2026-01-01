@@ -41,6 +41,7 @@ export const summarizerAgent = new Agent({
 })
 
 // Using the Agent.create method to ensures type safety for the final output
+//reference:https://openai.github.io/openai-agents-js/guides/agents/#multi-agent-system-design-patterns
 export const managerAgent = Agent.create({
   name: 'Manager Agent',
   instructions: `You are a manager agent that coordinates review classification and summarization.
