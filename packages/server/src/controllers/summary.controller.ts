@@ -5,12 +5,13 @@ import { logger } from '../utils'
 import type { Summary } from '../../generated/prisma/client'
 import { ProductsService } from '../services'
 import { ReviewsService } from '../services/reviews.service'
+import type { error } from 'winston'
 
 export const SummaryController = {
   getReviewSummary: async (
     req: Request,
     res: Response
-  ): Promise<Response<Summary>> => {
+  ): Promise<Response<{ summary: Summary | null; message: string }>> => {
     const { id } = req.params
     const productId = Number(id)
 
@@ -33,16 +34,19 @@ export const SummaryController = {
     // If summary exists and is not expired, return it
     if (storedSummary && storedSummary.expiresAt > now) {
       logger.info(`Using cached summary for product ID: ${productId}`)
-      return res.status(200).json({ summary: storedSummary })
+      return res
+        .status(200)
+        .json({ summary: storedSummary, message: 'Using cached summary' })
     } else {
       // If no summary exists or it has expired, generate a new one
       // Check if there are reviews for the product, if none, return a message
       const existingReview =
         await ReviewsService.getReviewsByProductId(productId)
       if (existingReview.length === 0) {
-        return res
-          .status(200)
-          .json({ message: 'No reviews found for this product' })
+        return res.status(200).json({
+          summary: null,
+          message: 'No reviews available for this product',
+        })
       }
 
       logger.info(`Generating new summary for product ID: ${productId}`)
@@ -59,7 +63,9 @@ export const SummaryController = {
         totalTokens: aiReviewSummary.state.usage.totalTokens,
         totalReviews: aiReviewSummary.finalOutput.total_reviews,
       })
-      return res.status(200).json({ summary: newSummary })
+      return res
+        .status(200)
+        .json({ summary: newSummary, message: 'New summary generated' })
     }
   },
 }
