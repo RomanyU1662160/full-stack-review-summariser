@@ -2,9 +2,13 @@ import type { Request, Response } from 'express'
 import { SummariesService } from '../services/summaries.service'
 import { AiChatService } from '../services/chat.service'
 import { logger } from '../utils'
+import type { Summary } from '../../generated/prisma/client'
 
 export const SummaryController = {
-  getReviewSummary: async (req: Request, res: Response) => {
+  getReviewSummary: async (
+    req: Request,
+    res: Response
+  ): Promise<Response<Summary>> => {
     const { id } = req.params
     const productId = Number(id)
 

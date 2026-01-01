@@ -23,7 +23,7 @@ const tools = tool({
   parameters: z.object({ product_id: z.number() }),
   async execute({ product_id }) {
     const reviews = await ReviewsService.getReviewsByProductId(product_id)
-    return reviews
+    return reviews.slice(0, 20) // Limit to first 20 reviews for processing
   },
 })
 
