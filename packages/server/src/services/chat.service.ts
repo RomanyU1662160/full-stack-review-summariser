@@ -1,4 +1,4 @@
-import { ReviewsAgent } from '../agents/reviews.agents'
+import { ReviewsAgent } from '../agents/openai/reviews.agents'
 
 export const AiChatService = {
   summarizeReviews: async (productId: number) => {

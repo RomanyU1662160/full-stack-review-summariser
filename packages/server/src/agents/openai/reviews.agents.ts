@@ -1,11 +1,11 @@
 import { Agent, tool, run } from '@openai/agents'
-import { ReviewsService } from '../services/reviews.service'
+import { ReviewsService } from '../../services/reviews.service'
 import { z } from 'zod'
-import { logger } from '../utils'
+import { logger } from '../../utils'
 import {
   reviewClassificationResponseSchemaZ,
   reviewSummaryResponseSchemaZ,
-} from './types'
+} from '../types'
 
 const reviewClassificationInstructions = `You are an expert review classifier.
   Given a product reviews provided to you, classify its sentiment.
