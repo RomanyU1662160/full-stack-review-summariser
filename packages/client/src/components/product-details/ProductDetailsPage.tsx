@@ -1,0 +1,51 @@
+import type { Product } from '@/types/product'
+import ProductDetails from './ProductDetails'
+import { useParams } from 'react-router'
+import { useEffect, useState } from 'react'
+import axios, { AxiosError } from 'axios'
+
+const ProductDetailsPage = () => {
+  const { id } = useParams<{ id: string }>()
+  const [product, setProduct] = useState<Product | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const response = await axios.get<Product>(`/api/products/${id}`)
+        console.log('product details data:::>>>', response.data)
+        setProduct(response.data)
+        setLoading(false)
+      } catch (error) {
+        console.log('error fetching product details:::>>>', error)
+        if (
+          error instanceof AxiosError &&
+          error.response &&
+          error.response.status === 404
+        ) {
+          console.log('error.message:::>>>', error.message)
+          setError('Product not found')
+          return
+        }
+        setError('Error fetching product details')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchProductDetails()
+  }, [id])
+
+  return (
+    <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {!loading && !error && !product && <p>Product not found</p>}
+      {product && <ProductDetails product={product} />}
+    </div>
+  )
+}
+
+export default ProductDetailsPage

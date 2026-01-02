@@ -2,9 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router'
 import ProductsList from './components/products/ProductsList.tsx'
-import ProductDetails from './components/product-details/ProductDetails.tsx'
+import ProductDetailsPage from './components/product-details/ProductDetailsPage.tsx'
 
 export const AppRoutes = () => {
   return (
@@ -12,7 +12,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/products" element={<ProductsList />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/product/:id" element={<ProductDetailsPage />} />
       </Routes>
     </BrowserRouter>
   )
@@ -21,5 +21,6 @@ export const AppRoutes = () => {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AppRoutes />
+    <Outlet />
   </StrictMode>
 )

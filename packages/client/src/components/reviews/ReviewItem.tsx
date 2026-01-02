@@ -1,4 +1,5 @@
 import type { Review } from '@/types/review'
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 
 type ReviewItemProps = {
   review: Review
@@ -6,14 +7,17 @@ type ReviewItemProps = {
 
 const ReviewItem = ({ review }: ReviewItemProps) => {
   return (
-    <div>
-      <h4 className="font-semibold">{review.title}</h4>
-      <p className="text-sm text-slate-600">{review.content}</p>
-      <p className="text-xs text-slate-400">
+    <Card className="mb-2 w-1/2 text-start p-0 ">
+      <CardHeader className="font-bold text-xl text-amber-600 bg-slate-100 mb-2 ">
+        {review.title}
+      </CardHeader>
+      <CardContent>{review.content}</CardContent>
+
+      <CardFooter className="text-sm text-gray-500">
         Rating: {review.rating} | By: {review.author.name} | On:{' '}
         {new Date(review.createdAt).toLocaleDateString()}
-      </p>
-    </div>
+      </CardFooter>
+    </Card>
   )
 }
 

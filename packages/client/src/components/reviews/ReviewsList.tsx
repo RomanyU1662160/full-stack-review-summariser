@@ -34,23 +34,24 @@ const ReviewsList = ({ productId, productName }: Props) => {
   }, [productId])
 
   return (
-    <div>
-      <h3 className="text-center text-info">{productName} Reviews</h3>
-      <div className="flex flex-col flex-1">
+    <>
+      <h3 className="text-center font-semibold mb-4 text-2xl text-amber-600">
+        {productName} Reviews
+      </h3>
+      <div className="flex flex-row space-x-4">
         {loading && <div>Loading reviews...</div>}
         {error && <div className="text-red-500">{error}</div>}
         {!loading && !error && reviews.length === 0 && (
           <div>No reviews available.</div>
         )}
-        {!loading && !error && reviews.length > 0 && (
-          <ul className="space-y-4">
-            {reviews.map((review) => (
-              <ReviewItem key={review.id} review={review} />
-            ))}
-          </ul>
-        )}
+        {!loading &&
+          !error &&
+          reviews.length > 0 &&
+          reviews.map((review) => (
+            <ReviewItem key={review.id} review={review} />
+          ))}
       </div>
-    </div>
+    </>
   )
 }
 
