@@ -14,7 +14,6 @@ const fetchReviews = async (productId: number) => {
     `/api/products/${productId}/reviews`
   )
   const reviews = response.data
-  console.log('reviews data:::>>>', reviews)
   return reviews
 }
 

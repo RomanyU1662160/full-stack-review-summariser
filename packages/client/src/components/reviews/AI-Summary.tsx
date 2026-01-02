@@ -15,7 +15,6 @@ const fetchSummary = async (productId: number) => {
   const result = await axios.get<SummaryResponse>(
     `/api/review-summaries/${productId}`
   )
-  console.log('reviews summary data:::>>>', result.data)
   return result.data
 }
 
@@ -35,6 +34,7 @@ const ReviewSummary = ({ productId }: SummaryProps) => {
           <button
             className="self-start px-2 py-2 bg-black text-white  hover:bg-amber-700 transition rounded-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
             onClick={() => setShowSummary(!showSummary)}
+            disabled={isLoading || !!error}
           >
             <HiSparkles className="inline mr-2 text-amber-200 text-2xl" />
             {showSummary ? 'Hide Summary' : 'Show Summary'}

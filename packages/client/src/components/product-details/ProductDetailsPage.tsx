@@ -16,17 +16,14 @@ const ProductDetailsPage = () => {
         setLoading(true)
         setError(null)
         const response = await axios.get<Product>(`/api/products/${id}`)
-        console.log('product details data:::>>>', response.data)
         setProduct(response.data)
         setLoading(false)
       } catch (error) {
-        console.log('error fetching product details:::>>>', error)
         if (
           error instanceof AxiosError &&
           error.response &&
           error.response.status === 404
         ) {
-          console.log('error.message:::>>>', error.message)
           setError('Product not found')
           return
         }
