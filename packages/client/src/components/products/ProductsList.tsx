@@ -1,13 +1,8 @@
 import type { Product } from '@/types/product'
-import axios from 'axios'
 import ProductItem from './ProductItem'
 import { useQuery } from '@tanstack/react-query'
 import { SkeletonCard } from '../skeleton/SkeletonCard'
-
-const fetchProducts = async () => {
-  const response = await axios.get('/api/products')
-  return response.data as Product[]
-}
+import { ProductsApi } from '@/api-layers'
 
 const ProductsList = () => {
   const {
@@ -16,7 +11,7 @@ const ProductsList = () => {
     error,
   } = useQuery<Product[]>({
     queryKey: ['products'],
-    queryFn: fetchProducts,
+    queryFn: ProductsApi.fetchProducts,
   })
 
   return (

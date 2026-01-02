@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import ProductsList from './components/products/ProductsList'
 import { useQuery } from '@tanstack/react-query'

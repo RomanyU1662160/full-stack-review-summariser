@@ -1,20 +1,12 @@
-import axios from 'axios'
-import type { Review } from '@/types/review'
 import ReviewItem from './ReviewItem'
 import { SkeletonCard } from '../skeleton/SkeletonCard'
 import { useQuery } from '@tanstack/react-query'
+import type { Review } from '@/types/review'
+import { ReviewsApi } from '@/api-layers'
 
 type Props = {
   productId: number
   productName: string
-}
-
-const fetchReviews = async (productId: number) => {
-  const response = await axios.get<Review[]>(
-    `/api/products/${productId}/reviews`
-  )
-  const reviews = response.data
-  return reviews
 }
 
 const ReviewsList = ({ productId, productName }: Props) => {
@@ -24,7 +16,7 @@ const ReviewsList = ({ productId, productName }: Props) => {
     error,
   } = useQuery<Review[]>({
     queryKey: ['reviews', productId],
-    queryFn: () => fetchReviews(productId),
+    queryFn: () => ReviewsApi.fetchReviews(productId),
   })
 
   return (

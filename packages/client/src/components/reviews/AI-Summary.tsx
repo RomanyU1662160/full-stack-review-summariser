@@ -1,4 +1,3 @@
-import axios from 'axios'
 import type { SummaryResponse } from '@/types/summary'
 import { SkeletonCard } from '../skeleton/SkeletonCard'
 import StarRating from './StarRating'
@@ -6,16 +5,10 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import { HiSparkles } from 'react-icons/hi2'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
+import { AISummaryApi } from '@/api-layers'
 
 type SummaryProps = {
   productId: number
-}
-
-const fetchSummary = async (productId: number) => {
-  const result = await axios.get<SummaryResponse>(
-    `/api/review-summaries/${productId}`
-  )
-  return result.data
 }
 
 const ReviewSummary = ({ productId }: SummaryProps) => {
@@ -23,7 +16,7 @@ const ReviewSummary = ({ productId }: SummaryProps) => {
 
   const { data, isLoading, error } = useQuery<SummaryResponse>({
     queryKey: ['summary', productId],
-    queryFn: () => fetchSummary(productId),
+    queryFn: () => AISummaryApi.fetchSummary(productId),
   })
 
   const { summary } = data || {}
