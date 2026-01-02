@@ -1,0 +1,80 @@
+services:
+  client:
+    build: ./packages/client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    environment:
+      - VITE_API_URL=http://server:3000
+      - CHOKIDAR_USEPOLLING=1 # enables polling for file changes,Vite uses Chokidar for file watching.
+    volumes:
+      - ./packages/client:/app # maps the client source code for live reloading
+      - /app/node_modules # ensures node_modules from container is used
+
+  server:
+    build: ./packages/server
+    ports:
+      - "3000:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=mysql://user:password@database:3306/reviews_db
+      # - OPENAI_API_KEY=your_openai_api_key_here # replace with your actual OpenAI API key
+      - OPENAI_MODEL=gpt-5-nano
+      - DATABASE_USER="user"
+      - DATABASE_PASSWORD="password"
+      - DATABASE_NAME="reviews_db"
+      - DATABASE_HOST="database"
+      - DATABASE_PORT=3306
+      - NODE_ENV=development
+    command: ["bun", "--watch", "run", "dev"]
+    # monitors files inside /app. When you edit a server file locally,
+    # the bind mount syncs it to the container,
+    # and bun --watch detects the change and restarts the dev server automatically.
+    #Polling on client
+    volumes:
+      - ./packages/server:/app
+      - /app/node_modules
+
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: reviews_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "user",
+          "-ppassword",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=database
+      - PMA_USER=user
+      - PMA_PASSWORD=password
+    depends_on:
+      - database
+
+volumes:
+  db_data:
