@@ -31,6 +31,7 @@ model Product {
   price       Float
   reviews     Review[]
   summary     Summary?
+  imageUrl    String?  @db.VarChar(512)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

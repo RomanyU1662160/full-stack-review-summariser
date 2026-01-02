@@ -30,6 +30,8 @@ async function main() {
         name: 'Wireless Mouse',
         description: 'Reliable wireless mouse for everyday use',
         price: 19.99,
+        imageUrl:
+          'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT6nXYLYCjF2aPV5rvfDJgsUqG19pTaSaWcwr2SjiVobTLvktA8ks85CTVHmEYjVC_ehOUzdWWCXLAmzIZAFybM_Sd1l5SHEwcor-wzkUwOWK1AmsGGHjB7LK0bVOwjxv7Zf10X-hPhRIE&usqp=CAc',
       },
     }),
     prisma.product.create({
@@ -37,6 +39,8 @@ async function main() {
         name: 'Mechanical Keyboard',
         description: 'Durable mechanical keyboard with tactile keys',
         price: 79.99,
+        imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgIuPL2MO3tE7qzl7IYFOJSSJ7RINttc9nUA&s',
       },
     }),
     prisma.product.create({
@@ -44,6 +48,8 @@ async function main() {
         name: 'USB-C Charger',
         description: 'Fast charging USB-C wall charger',
         price: 24.99,
+        imageUrl:
+          'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQsSOittqVaO-J6EsZvN1faUCuEsOZBltfudr75oFGIeQIGME3mLmGG3Qwjp1_iiUvs-DlqZ-VEHgG6vaFfCFcJ-QuKSyDUTyb51nQxb3uBOULTcVeEF5KptMcILRNoOkx-GyJzz9zipA&usqp=CAc',
       },
     }),
     prisma.product.create({
@@ -51,6 +57,8 @@ async function main() {
         name: 'Noise Cancelling Headphones',
         description: 'Comfortable headphones with active noise cancellation',
         price: 129.99,
+        imageUrl:
+          'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRlpg81ptutJiXqStiC2ykkUkTp_odQGNArSG29vPWRo0b11ZVcLAZBjDRw7sUJd_5HhqWI21bzpFLok3RJXpXBiwTiR_5CVRxFTjBrRNj2kqXWJO_N7-l1SPkWP1xLUkwNlPzTyQ9DKMU&usqp=CAc',
       },
     }),
     prisma.product.create({
@@ -58,6 +66,8 @@ async function main() {
         name: 'Laptop Stand',
         description: 'Adjustable aluminum laptop stand',
         price: 34.99,
+        imageUrl:
+          'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR1zdpHOuFYJUcvVdRlHNiC0wPmOLsuy3flmh-WFXdKBnHTunjx-0H1GrZJ6_JCDOvfohwWm9IHRiHbLlKZW5P9R-DmLn7-di2lFI_tmvGVHk6VVqfldDml58qVOp_dFuICsMSMzPFxaQ&usqp=CAc',
       },
     }),
   ])

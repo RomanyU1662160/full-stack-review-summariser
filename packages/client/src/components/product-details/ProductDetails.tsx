@@ -15,7 +15,7 @@ const ProductDetails = ({ product }: Props) => {
           <Card className=" m-4">
             <img
               loading="lazy"
-              src="./"
+              src={product.imageUrl || '/placeholder-image.png'}
               alt={product.name}
               height={200}
               width={400}
