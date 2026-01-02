@@ -15,14 +15,25 @@ type ProductItemProps = {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <Card className=" shadow-md">
-      <CardHeader>
-        <CardTitle className="text-blue-500">{product.name}</CardTitle>
-        <CardDescription>{product.description}</CardDescription>
+    <Card className="shadow-md flex flex-col h-full">
+      <CardHeader className="flex-1">
+        <CardTitle className="text-orange-500 text-lg md:text-xl">
+          {product.name}
+        </CardTitle>
+        <div className="h-48 my-4 flex justify-center items-center overflow-hidden rounded-md bg-gray-50">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="h-full w-full object-contain"
+          />
+        </div>
+        <CardDescription className="text-sm line-clamp-3">
+          {product.description}
+        </CardDescription>
       </CardHeader>
-      <CardAction className="self-end pr-4 pb-1">
-        <Button asChild>
-          <Link to={`products/product/${product.id}`}>View Product</Link>
+      <CardAction className="mt-auto p-4 pt-0">
+        <Button asChild className="w-full text-orange-400">
+          <Link to={`product/${product.id}`}>View Product</Link>
         </Button>
       </CardAction>
     </Card>

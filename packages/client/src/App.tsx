@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Summary from './components/reviews/Summary'
+import ProductsList from './components/products/ProductsList'
 
 type FetchHealthResponse = {
   status: string
@@ -38,9 +38,7 @@ function App() {
             {apiHealth ? 'Healthy' : 'Not healthy'}
           </span>
         </div>
-        <div className="flex flex-col justify-center ">
-          <Summary />
-        </div>
+        <ProductsList />
       </div>
     </>
   )

@@ -1,2 +1,2 @@
 export * from './ReviewsList'
-export * from './Summary'
+export * from './AI-Summary'
