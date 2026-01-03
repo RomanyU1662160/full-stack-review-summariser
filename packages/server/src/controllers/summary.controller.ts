@@ -57,12 +57,13 @@ export const SummaryController = {
         `Storing new summary in database for product ID: ${productId}`
       )
       const newSummary = await SummariesService.addSummaryToProduct(productId, {
-        summary: aiReviewSummary.finalOutput.summary,
-        overall_rating: aiReviewSummary.finalOutput.overall_rating,
-        high_lights: aiReviewSummary.finalOutput.high_lights,
-        totalTokens: aiReviewSummary.state.usage.totalTokens,
-        totalReviews: aiReviewSummary.finalOutput.total_reviews,
+        summary: aiReviewSummary.summary,
+        overall_rating: aiReviewSummary.overall_rating,
+        high_lights: aiReviewSummary.high_lights,
+        totalTokens: aiReviewSummary.usage.totalTokens,
+        totalReviews: aiReviewSummary.totalReviews,
       })
+      logger.info(`New summary stored for product ID: ${productId}`)
       return res
         .status(200)
         .json({ summary: newSummary, message: 'New summary generated' })

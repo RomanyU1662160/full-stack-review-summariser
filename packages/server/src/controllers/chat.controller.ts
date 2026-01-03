@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express'
 import { AiChatService } from '../services/chat.service'
+import { logger } from '../utils'
 
 export const AiChatController = {
   generateReviewSummary: async (req: Request, res: Response) => {
@@ -8,14 +9,13 @@ export const AiChatController = {
       if (isNaN(productId)) {
         return res.status(400).json({ error: 'Invalid product ID' })
       }
-      const classifications = await AiChatService.summarizeReviews(productId)
+      const reviewSummaries = await AiChatService.summarizeReviews(productId)
 
       return res.status(200).json({
-        classifications: classifications.finalOutput,
-        totalToken: classifications.state.usage.totalTokens,
+        data: reviewSummaries,
       })
     } catch (error) {
-      console.error('Error in classifyReviewSentiments:', error)
+      logger.error('Error in generateReviewSummary:', error)
       return res.status(500).json({ error: 'Internal Server Error' })
     }
   },
