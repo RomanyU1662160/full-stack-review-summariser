@@ -13,7 +13,9 @@ Instructions:
 - Extract key highlights that represent the most important themes
 
 IMPORTANT: Return ONLY a valid JSON object. Do not include markdown code blocks, explanations, or any text outside the JSON object.
-
+IMPORTANT: Don't include any additional commentary, just return the JSON object.
+---
+<example of valid JSON response>
 Return this exact JSON structure:
 {
   "summary": "A concise summary (1-1000 characters) that captures the overall sentiment and key points from all reviews. Use simple language and focus on overall sentiment and common themes, not specific review details.",

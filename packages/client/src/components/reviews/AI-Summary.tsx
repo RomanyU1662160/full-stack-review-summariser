@@ -20,6 +20,7 @@ const ReviewSummary = ({ productId }: SummaryProps) => {
   })
 
   const { summary } = data || {}
+
   return (
     <div className="w-full mb-6">
       {!isLoading && !error && (

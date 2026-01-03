@@ -1,6 +1,7 @@
 import { ReviewsAgent } from '../agents/openai/reviews.agents'
 import { HG_ReviewsAgent } from '../agents/HG/reviews.client'
 import { logger } from '../utils'
+// import { Ollama_ReviewsAgent } from '../agents/ollama/reviews.client'
 
 const AI_mode = process.env.AI_MODE
 
@@ -20,6 +21,7 @@ export const AiChatService = {
     if (isHF) {
       logger.info('Using Hugging Face Reviews Agent')
       const response = await HG_ReviewsAgent.summarizeReviews(productId)
+
       // HG agent returns parsed JSON object directly
       return {
         summary: response.summary,
@@ -36,7 +38,7 @@ export const AiChatService = {
       return {
         summary: response.finalOutput.summary,
         overall_rating: response.finalOutput.overall_rating,
-        totalReviews: response.finalOutput.totalReviews,
+        totalReviews: response.finalOutput.total_reviews,
         high_lights: response.finalOutput.high_lights,
         usage: {
           totalTokens: response.state.usage.totalTokens,
