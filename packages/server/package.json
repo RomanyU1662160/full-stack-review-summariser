@@ -1,8 +1,13 @@
 {
-  "name": "server",
+  "name": "@workspace/core",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
+  "exports": {
+    "./services": "./src/services/index.ts",
+    "./types": "./src/agents/types.ts",
+    "./prisma": "./generated/prisma/client.ts"
+  },
   "scripts": {
     "start": "bun run start:mysql && bun run src/index.ts",
     "dev": "bun run start:mysql &&  bun run --watch src/index.ts",
@@ -23,6 +28,7 @@
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.5",
+    "@modelcontextprotocol/sdk": "^1.25.1",
     "@openai/agents": "^0.3.7",
     "@prisma/adapter-mariadb": "^7.2.0",
     "@prisma/client": "^7.2.0",

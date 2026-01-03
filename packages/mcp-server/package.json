@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/mcp-server",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.18.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "@workspace/core": "workspace:*",
+    "zod": "^4.3.4"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "inspector": "bunx @modelcontextprotocol/inspector  bun run src/index.ts"
+  }
+}
