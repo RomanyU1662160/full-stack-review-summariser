@@ -11,7 +11,7 @@ export const mcpServer = new McpServer({
 
 registerMcpTool(mcpServer, fetchReviewsTool)
 
-export const startMcpServer = async (port: number) => {
+export const startMcpServer = async () => {
   try {
     const transport = new StdioServerTransport()
     await mcpServer.connect(transport)
