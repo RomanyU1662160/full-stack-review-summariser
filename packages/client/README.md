@@ -1,11 +1,105 @@
-# React + TypeScript + Vite
+# Client Package (@workspace/client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend application for browsing products and viewing AI-powered review summaries.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+
+- Bun v1.3.5+
+- Backend server running on http://localhost:3000
+
+### 1. Install Dependencies
+
+From the root directory:
+
+```bash
+bun install
+```
+
+### 2. Start Development Server
+
+```bash
+bun run dev
+```
+
+The app will start on http://localhost:5173
+
+## 📝 Available Scripts
+
+- `bun run dev` - Start development server with hot reload
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run lint` - Run ESLint
+
+## 🏗️ Architecture
+
+### Directory Structure
+
+```
+src/
+├── components/          # React components
+│   ├── products/       # Product listing components
+│   ├── product-details/# Product detail page
+│   ├── reviews/        # Review components
+│   ├── skeleton/       # Loading skeletons
+│   └── ui/            # shadcn/ui components
+├── api-layers/         # API client functions
+├── types/             # TypeScript type definitions
+├── lib/               # Utility functions
+└── assets/            # Static assets
+```
+
+## 🎨 Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI component library
+- **TanStack Query** - Data fetching and caching
+
+## 🔌 API Integration
+
+The client communicates with the backend API at `http://localhost:3000`. API calls are organized in `src/api-layers/`:
+
+- `products.api.ts` - Product endpoints
+- `reviews.api.ts` - Review endpoints
+- `ai-summary.api.ts` - AI summary endpoints
+
+## 🎯 Features
+
+- **Product Listing** - Browse all products
+- **Product Details** - View detailed product information
+- **Reviews Display** - Read customer reviews with ratings
+- **AI Summaries** - View AI-generated review summaries
+- **Responsive Design** - Mobile-first responsive layout
+- **Loading States** - Skeleton loaders for better UX
+
+## 🛠️ Development
+
+### Adding New Components
+
+Use shadcn/ui CLI to add components:
+
+```bash
+bunx shadcn@latest add [component-name]
+```
+
+### Code Style
+
+The project uses ESLint and Prettier for code formatting. Run linting:
+
+```bash
+bun run lint
+```
+
+## React + TypeScript + Vite
+
+This project is built with:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) - Uses Babel for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) - Uses SWC for Fast Refresh
 
 ## React Compiler
 
