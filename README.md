@@ -99,7 +99,11 @@ bun run db:seed
 
 ### Run Everything (Recommended)
 
-Open 2 terminal windows:
+```bash
+bun run app
+```
+
+Option 2 run services individually:
 
 **Terminal 1 - Backend Server:**
 
