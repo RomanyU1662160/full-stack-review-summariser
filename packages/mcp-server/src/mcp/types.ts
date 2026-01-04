@@ -1,8 +1,8 @@
-import z from 'zod'
+import { z } from 'zod'
 
 export type CustomTool<
   TInput extends z.ZodTypeAny = z.ZodTypeAny,
-  TOutput extends z.ZodTypeAny = z.ZodTypeAny,
+  TOutput extends Record<string, z.ZodTypeAny> = Record<string, z.ZodTypeAny>,
 > = {
   name: string
   title: string

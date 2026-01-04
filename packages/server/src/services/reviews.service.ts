@@ -1,4 +1,3 @@
-import { add } from 'winston'
 import type { Review } from '../../generated/prisma/client'
 import { prisma } from '../../prisma/prisma'
 
@@ -16,6 +15,7 @@ export const ReviewsService = {
       },
       orderBy: { createdAt: 'desc' },
     })
+    console.log('reviews:::>>>', reviews)
     return reviews
   },
   addReviewToProduct: async (

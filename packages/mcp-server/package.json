@@ -12,7 +12,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.1",
     "@workspace/core": "workspace:*",
-    "zod": "^4.3.4"
+    "dotenv": "^17.2.3",
+    "zod": "^3.25.76"
   },
   "scripts": {
     "dev": "bun run src/index.ts",
